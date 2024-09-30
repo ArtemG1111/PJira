@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\jtbfajyp.4ja~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -15,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PJira.API\PJira.API.csproj" />
     <ProjectReference Include="..\PJira.Core\PJira.Core.csproj" />
   </ItemGroup>
 

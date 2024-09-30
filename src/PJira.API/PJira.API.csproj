@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PJira.Application\PJira.Application.csproj" />
+    <ProjectReference Include="..\PJira.Infrastructure\PJira.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

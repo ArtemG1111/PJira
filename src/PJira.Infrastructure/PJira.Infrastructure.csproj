@@ -19,8 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PJira.API\PJira.API.csproj" />
-    <ProjectReference Include="..\PJira.Core\PJira.Core.csproj" />
+    <ProjectReference Include="..\PJira.Application\PJira.Application.csproj" />
   </ItemGroup>
 
 </Project>

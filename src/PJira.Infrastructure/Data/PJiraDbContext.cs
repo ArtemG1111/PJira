@@ -1,14 +1,15 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using PJira.Application.Common.Interfaces;
 using PJira.Core.Models;
 using System.Reflection;
 
 namespace PJira.Infrastructure.Data
 {
-    public class PJiraDbContext : DbContext
+    public class PJiraDbContext : DbContext, IPJiraDbContext
     {
-        public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
 
         public PJiraDbContext(DbContextOptions<PJiraDbContext> options) : base (options)
         {

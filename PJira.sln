@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PJira.Application", "src\PJ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PJira.Core", "src\PJira.Core\PJira.Core.csproj", "{06134AC6-B347-4F01-AE60-88452E515B8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PJira.Infrastructure", "src\PJira.Infrastructure\PJira.Infrastructure.csproj", "{D756F172-CF7B-4619-9117-DC90555D70DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PJira.Infrastructure", "src\PJira.Infrastructure\PJira.Infrastructure.csproj", "{D756F172-CF7B-4619-9117-DC90555D70DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FFB7CEB8-4132-49D5-8D48-A4A92FA708A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PJira.Application.Tests", "tests\PJira.Application.Tests\PJira.Application.Tests.csproj", "{BB9442A8-296B-4F70-A934-096C738B297D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,10 @@ Global
 		{D756F172-CF7B-4619-9117-DC90555D70DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D756F172-CF7B-4619-9117-DC90555D70DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D756F172-CF7B-4619-9117-DC90555D70DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9442A8-296B-4F70-A934-096C738B297D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9442A8-296B-4F70-A934-096C738B297D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9442A8-296B-4F70-A934-096C738B297D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9442A8-296B-4F70-A934-096C738B297D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{84914E92-EDCD-4D8D-91DC-1B28786C6B4D} = {D9FF0578-0B63-4AAC-944C-A6DC38A56C67}
 		{06134AC6-B347-4F01-AE60-88452E515B8C} = {D9FF0578-0B63-4AAC-944C-A6DC38A56C67}
 		{D756F172-CF7B-4619-9117-DC90555D70DB} = {D9FF0578-0B63-4AAC-944C-A6DC38A56C67}
+		{BB9442A8-296B-4F70-A934-096C738B297D} = {FFB7CEB8-4132-49D5-8D48-A4A92FA708A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {735803DF-64D6-470D-B711-4BB5A86E7BE9}

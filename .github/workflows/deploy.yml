@@ -84,7 +84,7 @@ jobs:
           ssh -i ~/.ssh/test_rsa -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}} << 'EOF'
             sudo docker pull ${{ env.IMAGE_NAME }}:master
             sudo docker ps -a
-            sudo docker stop 
+            sudo docker stop pankira-aC
             sudo docker rm ${{ env.IMAGE_NAME }}C
             sudo docker run -d -p 8082:8080 --name pankira-aC ${{ env.IMAGE_NAME }}:master
           EOF

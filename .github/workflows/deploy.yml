@@ -85,6 +85,6 @@ jobs:
             sudo docker pull ${{ env.IMAGE_NAME }}:master
             sudo docker ps -a
             sudo docker stop pankira-aC
-            sudo docker rm ${{ env.IMAGE_NAME }}C
+            sudo docker rm pankira-aC
             sudo docker run -d -p 8082:8080 --name pankira-aC ${{ env.IMAGE_NAME }}:master
           EOF

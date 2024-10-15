@@ -21,9 +21,9 @@ namespace PJira.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAssignments()
         { 
-            var dogs = await _mediator.Send(new GetAssignmentsQuery());
+            var assignments = await _mediator.Send(new GetAssignmentsQuery());
 
-            return Ok(dogs);
+            return Ok(assignments);
         }
         [HttpPost]
         [Route("createAssignment/")]

@@ -12,6 +12,8 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Moq.EntityFrameworkCore" Version="8.0.1.2" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
@@ -21,7 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AssignmentTests\" />
+    <ProjectReference Include="..\..\src\PJira.API\PJira.API.csproj" />
+    <ProjectReference Include="..\..\src\PJira.Application\PJira.Application.csproj" />
+    <ProjectReference Include="..\..\src\PJira.Core\PJira.Core.csproj" />
+    <ProjectReference Include="..\..\src\PJira.Infrastructure\PJira.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

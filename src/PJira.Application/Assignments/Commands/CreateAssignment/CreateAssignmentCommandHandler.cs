@@ -4,7 +4,7 @@ using MediatR;
 using PJira.Application.Common.Interfaces;
 using PJira.Core.Models;
 
-namespace PJira.Application.Assignments.Commands.CreateTask
+namespace PJira.Application.Assignments.Commands.CreateAssignment
 {
     public class CreateAssignmentCommandHandler : IRequestHandler<CreateAssignmentCommand, Guid>
     {

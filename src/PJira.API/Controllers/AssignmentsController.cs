@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PJira.Application.Assignments.Commands.CreateTask;
+using PJira.Application.Assignments.Commands.CreateAssignment;
 using PJira.Application.Assignments.Commands.DeleteAssignment;
 using PJira.Application.Assignments.Commands.UpdateAssignment;
 using PJira.Application.Assignments.Queries.GetAssignment;

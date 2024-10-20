@@ -1,12 +1,12 @@
 ﻿
-
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PJira.Application.Common.Interfaces;
 
 namespace PJira.Application.Assignments.Commands.DeleteAssignment
 {
-    class DeleteAssignmentCommandHandler : IRequestHandler<DeleteAssignmentCommand>
+    public class DeleteAssignmentCommandHandler : IRequestHandler<DeleteAssignmentCommand>
+
     {
         private readonly IPJiraDbContext _dbContext;
         public DeleteAssignmentCommandHandler(IPJiraDbContext dbContext)

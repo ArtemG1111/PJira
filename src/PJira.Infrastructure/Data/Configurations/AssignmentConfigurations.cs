@@ -14,6 +14,8 @@ namespace PJira.Infrastructure.Data.Configurations
             builder.Property(x => x.Title);
             builder.Property(x => x.Description);
             builder.Property(x => x.Status);
+
+            builder.HasOne(h => h.Project).WithMany(w => w.Assignments);
             
         }
     }

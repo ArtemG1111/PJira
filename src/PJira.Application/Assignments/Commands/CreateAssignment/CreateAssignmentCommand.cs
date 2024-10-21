@@ -8,6 +8,6 @@ namespace PJira.Application.Assignments.Commands.CreateAssignment
         public string Title { get; set; }
         public string Description { get; set; }
         public AssignmentStatus Status { get; set; }
-
+        public Guid ProjectId { get; set; }
     }
 }

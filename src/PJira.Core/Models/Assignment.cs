@@ -10,9 +10,7 @@ namespace PJira.Core.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public AssignmentStatus Status { get; set; }
-
-
+        public Project Project { get; set; }
+        public Guid ProjectId { get; set; }
     }
-
-
 }

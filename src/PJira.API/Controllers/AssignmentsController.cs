@@ -35,12 +35,8 @@ namespace PJira.API.Controllers
         }
         [HttpPut]
         [Route("updateAssignment")]
-        public async Task<IActionResult> UpdateAssignment(Guid id, UpdateAssignmentCommand command)
+        public async Task<IActionResult> UpdateAssignment(UpdateAssignmentCommand command)
         {
-            if(id != command.Id)
-            {
-                return BadRequest();
-            }
 
             await _mediator.Send(command);
 

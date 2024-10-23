@@ -28,14 +28,9 @@ namespace PJira.API.Controllers
         }
         [HttpGet]
         [Route("getProjectById")]
-        public async Task<IActionResult> GetProjectById(Guid id, GetProjectByIdQuery query)
-        {
-            if(id != query.Id)
-            {
-                return BadRequest();
-            }
-
-            var project = await _mediator.Send(query);
+        public async Task<IActionResult> GetProjectById(Guid id)
+        {    
+            var project = await _mediator.Send(new GetProjectByIdQuery { Id = id});
 
             return Ok(project);
         }
@@ -50,12 +45,9 @@ namespace PJira.API.Controllers
         }
         [HttpPut]
         [Route("updateProject")]
-        public async Task<IActionResult> UpdateProject(Guid id, UpdateProjectCommand command)
+        public async Task<IActionResult> UpdateProject(UpdateProjectCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
+
             await _mediator.Send(command);
 
             return Ok();

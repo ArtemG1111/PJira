@@ -73,7 +73,6 @@ namespace PJira.Application.Tests.AssignmentTests.CommandsTests
         {
             var mockDbContext = new Mock<IPJiraDbContext>();
 
-
             var assignmetnId = Guid.NewGuid();
 
             var existingAssignment = new Assignment

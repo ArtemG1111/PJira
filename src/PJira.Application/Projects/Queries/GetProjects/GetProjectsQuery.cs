@@ -1,10 +1,10 @@
 ﻿
 using MediatR;
-using PJira.Core.Models;
+using PJira.Application.DTOs;
 
 namespace PJira.Application.Projects.Queries.GetProjects
 {
-    public class GetProjectsQuery : IRequest<List<Project>>
+    public class GetProjectsQuery : IRequest<List<ProjectDto>>
     {
 
     }

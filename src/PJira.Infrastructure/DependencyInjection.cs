@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,18 @@ namespace PJira.Infrastructure
             });
 
             services.AddScoped<IPJiraDbContext, PJiraDbContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = true;
+
+            })
+                .AddEntityFrameworkStores<PJiraDbContext>();
+
 
             return services;
         }

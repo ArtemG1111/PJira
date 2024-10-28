@@ -1,9 +1,11 @@
 ﻿
 
+using AutoMapper;
 using Moq;
 using Moq.EntityFrameworkCore;
 using PJira.Application.Assignments.Queries.GetAssignment;
 using PJira.Application.Common.Interfaces;
+using PJira.Application.DTOs;
 using PJira.Core.Models;
 
 namespace PJira.Application.Tests.AssignmentTests.QueriesTests
@@ -20,8 +22,10 @@ namespace PJira.Application.Tests.AssignmentTests.QueriesTests
             };
 
             var mockDbContext = new Mock<IPJiraDbContext>();
+            var mockMapper = new Mock<IMapper>();
 
             mockDbContext.Setup(a => a.Assignments).ReturnsDbSet(assignments);
+          
 
             var query = new GetAssignmentsQuery();
 

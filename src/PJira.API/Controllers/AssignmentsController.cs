@@ -1,15 +1,18 @@
-﻿using MediatR;
+﻿
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PJira.Application.Assignments.Commands.CreateAssignment;
 using PJira.Application.Assignments.Commands.DeleteAssignment;
 using PJira.Application.Assignments.Commands.UpdateAssignment;
 using PJira.Application.Assignments.Queries.GetAssignment;
-using PJira.Core.Models;
+
 
 namespace PJira.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class AssignmentsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -21,6 +24,7 @@ namespace PJira.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAssignments()
         { 
+
             var assignments = await _mediator.Send(new GetAssignmentsQuery());
 
             return Ok(assignments);

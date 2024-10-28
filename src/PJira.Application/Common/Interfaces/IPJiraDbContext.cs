@@ -6,7 +6,7 @@ using PJira.Core.Models;
 
 namespace PJira.Application.Common.Interfaces
 {
-    public interface IPJiraDbContext
+    public interface IPJiraDbContext 
     {
         DbSet<Assignment> Assignments { get; }
 

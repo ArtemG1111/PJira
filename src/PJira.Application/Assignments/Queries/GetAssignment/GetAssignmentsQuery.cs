@@ -1,11 +1,13 @@
 ﻿
 
 using MediatR;
-using PJira.Core.Models;
+using PJira.Application.DTOs;
+
+
 
 namespace PJira.Application.Assignments.Queries.GetAssignment
 {
-    public class GetAssignmentsQuery : IRequest<List<Assignment>>
+    public class GetAssignmentsQuery : IRequest<List<AssignmentDto>>
     {
 
     }

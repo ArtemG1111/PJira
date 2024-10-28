@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PJira.Application.Projects.Commands.CreateProject;
 using PJira.Application.Projects.Commands.DeleteProject;
@@ -10,6 +11,7 @@ namespace PJira.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class ProjectsController : ControllerBase
     {
         private readonly IMediator _mediator;

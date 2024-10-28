@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.Extensions.DependencyInjection;
+using PJira.Application.Common.Mappers;
 using System.Reflection;
 
 namespace PJira.Application
@@ -13,6 +14,7 @@ namespace PJira.Application
             {
                 conf.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
             });
+            services.AddAutoMapper(typeof(AssignmentMappingProfile));
 
             return services;
         }

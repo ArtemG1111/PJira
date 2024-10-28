@@ -20,7 +20,8 @@ namespace PJira.Application.Assignments.Commands.CreateAssignment
             {
                 Title = command.Title,
                 Description = command.Description,
-                Status = command.Status
+                Status = command.Status,
+                ProjectId = command.ProjectId
             };
 
             _dbContext.Assignments.Add(assignment);

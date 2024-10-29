@@ -1,7 +1,7 @@
 ﻿
 
 using AutoMapper;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using PJira.Application.DTOs;
 
 namespace PJira.Application.Common.Mappers

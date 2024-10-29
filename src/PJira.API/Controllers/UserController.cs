@@ -3,7 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PJira.Application.DTOs;
-using System.ComponentModel.DataAnnotations;
+
 
 
 namespace PJira.API.Controllers
@@ -44,7 +44,7 @@ namespace PJira.API.Controllers
         }
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> SignIn(UserDto userDto)
+        public async Task<IActionResult> SignIn([FromQuery] UserDto userDto)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,12 @@ namespace PJira.API.Controllers
                 {
                     return BadRequest("User not found");
                 }
-                await _signInManager.PasswordSignInAsync(user, userDto.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(user, userDto.Password, false, false);
+
+                if (!result.Succeeded)
+                {
+                    return BadRequest("Invalid name or password");
+                }
             }
             return Ok("Successfully signed in");
         }
@@ -69,6 +74,12 @@ namespace PJira.API.Controllers
             await _signInManager.SignOutAsync();
 
             return Ok("Successfully signed out");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetUsers()
+        {
+            var result = _userManager.Users.ToList();
+            return Ok(result);
         }
     }
 }

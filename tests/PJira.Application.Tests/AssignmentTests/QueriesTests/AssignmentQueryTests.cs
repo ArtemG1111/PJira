@@ -21,15 +21,22 @@ namespace PJira.Application.Tests.AssignmentTests.QueriesTests
                 new Assignment {Id = Guid.NewGuid()}
             };
 
-            var mockDbContext = new Mock<IPJiraDbContext>();
-            var mockMapper = new Mock<IMapper>();
-
+            var mockDbContext = new Mock<IPJiraDbContext>();            
+            
             mockDbContext.Setup(a => a.Assignments).ReturnsDbSet(assignments);
-          
 
+            var mockMapper = new Mock<IMapper>();
+            
             var query = new GetAssignmentsQuery();
 
-            var handler = new GetAssignmentsQueryHandler(mockDbContext.Object);
+            mockMapper.Setup(m => m.Map<List<AssignmentDto>>(assignments))
+                .Returns(new List<AssignmentDto>
+                { 
+                    new AssignmentDto {Id = assignments[0].Id},
+                    new AssignmentDto {Id = assignments[1].Id}
+                });
+
+            var handler = new GetAssignmentsQueryHandler(mockDbContext.Object, mockMapper.Object);
 
             var result = await handler.Handle(query, CancellationToken.None);
             

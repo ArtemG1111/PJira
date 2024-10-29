@@ -6,6 +6,8 @@ using PJira.Application.Common.Interfaces;
 using PJira.Application.Projects.Queries.GetProjectById;
 using PJira.Application.Projects.Queries.GetProjects;
 using PJira.Core.Models;
+using AutoMapper;
+using PJira.Application.DTOs;
 
 namespace PJira.Application.Tests.ProjectTests.QueriesTests
 {
@@ -24,9 +26,18 @@ namespace PJira.Application.Tests.ProjectTests.QueriesTests
 
             mockDbContext.Setup(p=>p.Projects).ReturnsDbSet(projects);
 
+            var mockMapper = new Mock<IMapper>();
+
+            mockMapper.Setup(m => m.Map<List<ProjectDto>>(projects))
+                .Returns(new List<ProjectDto>
+                {
+                    new ProjectDto {Id = projects[0].Id},
+                    new ProjectDto {Id = projects[1].Id}
+                });
+
             var query = new GetProjectsQuery();
 
-            var handler = new GetProjectsQueryHandler(mockDbContext.Object);
+            var handler = new GetProjectsQueryHandler(mockDbContext.Object, mockMapper.Object);
 
             var result = await handler.Handle(query, CancellationToken.None);
 
@@ -50,12 +61,16 @@ namespace PJira.Application.Tests.ProjectTests.QueriesTests
 
             var query = new GetProjectByIdQuery { Id = projectId };
 
-            var handler = new GetProjectByIdQueryHandler(mockDbContext.Object);
+            var mockMapper = new Mock<IMapper>();
+
+            mockMapper.Setup(m => m.Map<ProjectDto>(projects)).Returns(new ProjectDto { Id = projectId });
+
+            var handler = new GetProjectByIdQueryHandler(mockDbContext.Object, mockMapper.Object);
 
             var result = await handler.Handle(query, CancellationToken.None);
 
             Assert.NotNull(result);
-            Assert.Equal(projects[0], result);
+            Assert.Equal(projectId, result.Id);
 
             mockDbContext.Verify(p => p.Projects, Times.Once());
 

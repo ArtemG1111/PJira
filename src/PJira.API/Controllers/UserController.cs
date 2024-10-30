@@ -2,6 +2,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PJira.API.Services;
 using PJira.Application.DTOs;
 
 
@@ -15,57 +17,57 @@ namespace PJira.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
         public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager
-            , IMapper mapper)
+            , IMapper mapper, ITokenService tokenService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> SingUp(UserDto userDto)
+        public async Task<IActionResult> Registration(UserDto userDto)
         {
-            if (ModelState.IsValid)
+
+            var identityUser = _mapper.Map<IdentityUser>(userDto);
+
+            var result = await _userManager.CreateAsync(identityUser, userDto.Password);
+
+            if (!result.Succeeded)
             {
-                var identityUser = _mapper.Map<IdentityUser>(userDto);
-
-                var result = await _userManager.CreateAsync(identityUser, userDto.Password);
-
-                if (!result.Succeeded)
-                {
-                    return BadRequest(result.Errors);
-                }
-
-                await _signInManager.SignInAsync(identityUser, false);
+                return BadRequest(result.Errors);
             }
-            return Ok("User was create");
+
+            await _signInManager.SignInAsync(identityUser, false);
+
+            var token = _tokenService.GenerateToken(_mapper.Map<IdentityUser>(userDto));
+
+            return Ok(token);
         }
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> SignIn([FromQuery] UserDto userDto)
+        public async Task<IActionResult> LogIn([FromQuery] UserDto userDto)
         {
-            if (ModelState.IsValid)
+
+            var user = await _userManager.FindByNameAsync(userDto.UserName);
+
+            if (user == null)
             {
-                var user = await _userManager.FindByNameAsync(userDto.UserName);
-
-                if (user == null)
-                {
-                    return BadRequest("User not found");
-                }
-                var result = await _signInManager.PasswordSignInAsync(user, userDto.Password, false, false);
-
-                if (!result.Succeeded)
-                {
-                    return BadRequest("Invalid name or password");
-                }
+                return BadRequest("User not found");
             }
-            return Ok("Successfully signed in");
+
+            await _signInManager.PasswordSignInAsync(user, userDto.Password, false, false);
+
+            var token = await _tokenService.GenerateToken(_mapper.Map<IdentityUser>(userDto));
+
+            return Ok(token);
         }
         [HttpPost]
         [Route("logout")]
-        public async Task<IActionResult> SingOut(UserDto userDto)
+        public async Task<IActionResult> LogOut()
         {
             if (User.Identity?.Name == null)
             {
@@ -73,13 +75,13 @@ namespace PJira.API.Controllers
             }
             await _signInManager.SignOutAsync();
 
-            return Ok("Successfully signed out");
+            return Ok("Successfully log out");
         }
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _userManager.Users.ToList();
-            return Ok(result);
+            var users = _userManager.Users.ToList();
+            return Ok(users);
         }
     }
 }

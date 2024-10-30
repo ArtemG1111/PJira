@@ -16,7 +16,7 @@ namespace PJira.Infrastructure.Data
 
         public PJiraDbContext(DbContextOptions<PJiraDbContext> options) : base (options)
         {
-            Database.EnsureDeleted();
+
             Database.EnsureCreated();
         }
         
